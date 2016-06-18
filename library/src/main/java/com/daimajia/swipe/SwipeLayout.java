@@ -533,7 +533,7 @@ public class SwipeLayout extends FrameLayout {
 
     protected void dispatchSwipeEvent(int surfaceLeft, int surfaceTop, boolean open) {
         safeBottomView();
-        Status status = getOpenStatus();
+        int status = getOpenStatus();
 
         if (!mSwipeListeners.isEmpty()) {
             mEventCounter++;
@@ -572,7 +572,7 @@ public class SwipeLayout extends FrameLayout {
      * prevent bottom view get any touch event. Especially in LayDown mode.
      */
     private void safeBottomView() {
-        Status status = getOpenStatus();
+        int status = getOpenStatus();
         List<View> bottoms = getBottomViews();
 
         if (status == Status.Close) {
@@ -831,7 +831,7 @@ public class SwipeLayout extends FrameLayout {
             mIsBeingDragged = true;
             return;
         }
-        Status status = getOpenStatus();
+        int status = getOpenStatus();
         float distanceX = ev.getRawX() - sX;
         float distanceY = ev.getRawY() - sY;
         float angle = Math.abs(distanceY / distanceX);
@@ -1281,10 +1281,10 @@ public class SwipeLayout extends FrameLayout {
         return bottoms;
     }
 
-    public enum Status {
-        Middle,
-        Open,
-        Close
+    public class Status {
+        public static final int Middle = 0;
+        public static final int Open = 1;
+        public static final int Close = 2;
     }
 
     /**
@@ -1293,18 +1293,21 @@ public class SwipeLayout extends FrameLayout {
      * @return {@link com.daimajia.swipe.SwipeLayout.Status} Open , Close or
      * Middle.
      */
-    public Status getOpenStatus() {
+    public int getOpenStatus() {
         View surfaceView = getSurfaceView();
         if (surfaceView == null) {
             return Status.Close;
         }
         int surfaceLeft = surfaceView.getLeft();
         int surfaceTop = surfaceView.getTop();
-        if (surfaceLeft == getPaddingLeft() && surfaceTop == getPaddingTop()) return Status.Close;
+        if (surfaceLeft == getPaddingLeft() && surfaceTop == getPaddingTop()) {
+            return Status.Close;
+        }
 
         if (surfaceLeft == (getPaddingLeft() - mDragDistance) || surfaceLeft == (getPaddingLeft() + mDragDistance)
-                || surfaceTop == (getPaddingTop() - mDragDistance) || surfaceTop == (getPaddingTop() + mDragDistance))
+                || surfaceTop == (getPaddingTop() - mDragDistance) || surfaceTop == (getPaddingTop() + mDragDistance)) {
             return Status.Open;
+        }
 
         return Status.Middle;
     }
@@ -1460,9 +1463,13 @@ public class SwipeLayout extends FrameLayout {
     }
 
     public void toggle(boolean smooth) {
-        if (getOpenStatus() == Status.Open)
+        int status = getOpenStatus();
+
+        if (status == Status.Open) {
             close(smooth);
-        else if (getOpenStatus() == Status.Close) open(smooth);
+        } else if (status == Status.Close) {
+            open(smooth);
+        }
     }
 
 
