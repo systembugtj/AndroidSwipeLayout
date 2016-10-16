@@ -39,7 +39,7 @@ publishing {
 }
 
 artifactory {
-    contextUrl = 'http://maven.kandaping.com:8081/artifactory'
+    contextUrl = artifactory_context_url
     publish {
         repository {
             repoKey = 'libs-release-local'
