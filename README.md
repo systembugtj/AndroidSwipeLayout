@@ -1,6 +1,7 @@
 # Android Swipe Layout
 
-[![](https://jitpack.io/v/systembugtj/swipestack.svg)](https://jitpack.io/#systembugtj/swipestack)
+[![Build Status](https://travis-ci.org/systembugtj/SwipeLayout.svg?branch=master)](https://travis-ci.org/systembugtj/SwipeLayout)
+[![](https://jitpack.io/v/systembugtj/swipelayout.svg)](https://jitpack.io/#systembugtj/swipelayout)
 
 This is the brother of [AndroidViewHover](https://github.com/daimajia/AndroidViewHover).
 
