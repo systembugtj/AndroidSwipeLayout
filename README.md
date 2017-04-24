@@ -1,6 +1,6 @@
 # Android Swipe Layout
 
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/daimajia/AndroidSwipeLayout?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![](https://jitpack.io/v/systembugtj/swipestack.svg)](https://jitpack.io/#systembugtj/swipestack)
 
 This is the brother of [AndroidViewHover](https://github.com/daimajia/AndroidViewHover).
 
